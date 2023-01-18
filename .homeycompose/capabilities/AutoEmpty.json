@@ -3,7 +3,9 @@
     "getable": true,
     "setable": true,
     "title": {
-        "en": "Auto empty after cleaning"
+        "en": "Auto empty after cleaning",
+        "fr": "Vidange auto après nettoyage",
+        "nl": "Automatisch legen"
     },
     "icon": "/assets/AutoEmpty.svg"
 }

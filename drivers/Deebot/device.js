@@ -40,7 +40,7 @@ class VacuumDevice extends Device {
 
 		const actionRetunrDock = this.homey.flow.getActionCard('ReturnDock');
 		actionRetunrDock.registerRunListener(async (args, state) => {
-			this.setCapabilityValue('ReturnDock', true);
+			this.setCapabilityValue('ReturnDock', true).catch(this.error);
 			this.vacbot.charge();
 		});
 
@@ -51,13 +51,13 @@ class VacuumDevice extends Device {
 
 		const actionPauseCleaning = this.homey.flow.getActionCard('PauseCleaning');
 		actionPauseCleaning.registerRunListener(async (args, state) => {
-			this.setCapabilityValue('PauseCleaning', true);
+			this.setCapabilityValue('PauseCleaning', true).catch(this.error);
 			this.vacbot.pause();
 		});
 
 		const actionResumeCleaning = this.homey.flow.getActionCard('ResumeCleaning');
 		actionResumeCleaning.registerRunListener(async (args, state) => {
-			this.setCapabilityValue('PauseCleaning', false);
+			this.setCapabilityValue('PauseCleaning', false).catch(this.error);
 			this.vacbot.resume();
 		});
 
@@ -201,53 +201,65 @@ class VacuumDevice extends Device {
 			// this.vacbot.run('GetAromaMode'); Not working (yet?)
 
 			this.vacbot.on('WaterBoxInfo', (level) => {
-				this.setCapabilityValue('MopStatus', Boolean(level));
+				this.setCapabilityValue('MopStatus', Boolean(level)).catch(this.error);
 			});
 
 			this.vacbot.on('WaterBoxInfo', (level) => {
-				this.setCapabilityValue('MopStatus', Boolean(level));
+				this.setCapabilityValue('MopStatus', Boolean(level)).catch(this.error);
 			});
 
 			this.vacbot.on('CleanCount', (mode) => {
-				this.setCapabilityValue('CleanCount', Boolean((mode - 1)));
+				this.setCapabilityValue('CleanCount', Boolean((mode - 1))).catch(this.error);
 			});
 
 			this.vacbot.on('CleanSpeed', (level) => {
-				this.setCapabilityValue('VacuumPower', level.toString());
+				this.setCapabilityValue('VacuumPower', level.toString()).catch(this.error);
 			});
 
 			this.vacbot.on('WaterLevel', (level) => {
-				this.setCapabilityValue('WaterFlowLevel', level.toString());
+				this.setCapabilityValue('WaterFlowLevel', level.toString()).catch(this.error);
 			});
 
 			this.vacbot.on('AutoEmpty', (mode) => {
-				this.setCapabilityValue('AutoEmpty', Boolean(mode));
+				this.setCapabilityValue('AutoEmpty', Boolean(mode)).catch(this.error);
 			});
 
 			this.vacbot.on('AromaMode', (mode) => {
-				this.setCapabilityValue('AromaMode', Boolean(mode));
+				this.setCapabilityValue('AromaMode', Boolean(mode)).catch(this.error);
 			});
 
 			this.vacbot.on("BatteryInfo", (battery) => {
-				this.setCapabilityValue('measure_battery', Math.round(battery));
+				this.setCapabilityValue('measure_battery', Math.round(battery)).catch(this.error);
 			});
 
 			this.vacbot.on('WaterBoxScrubbingType', (mode) => {
-				this.setCapabilityValue('ScrubbingType', Boolean(mode - 1));
+				this.setCapabilityValue('ScrubbingType', Boolean(mode - 1)).catch(this.error);
 			});
 
 			this.vacbot.on('CleanLog', async (object) => {
-				this.vacbot.downloadSecuredContent(object[0].imageUrl, '/userdata/latestCleanLog_(' + data.id + ').png');
-				if (init) { 
-					const latestCleanLogImage = await this.homey.images.createImage(); 
-					latestCleanLogImage.setPath('/userdata/latestCleanLog_(' + data.id + ').png');
-					this.setCameraImage('Lastest Cleanlog', 'Lastest Cleanlog', latestCleanLogImage);
+				try {
+					this.vacbot.downloadSecuredContent(object[0].imageUrl, '/userdata/latestCleanLog_(' + data.id + ').png').catch(this.error);
+					if (init) {
+						const latestCleanLogImage = await this.homey.images.createImage();
+						latestCleanLogImage.setPath('/userdata/latestCleanLog_(' + data.id + ').png');
+						this.setCameraImage('Lastest Cleanlog', 'Lastest Cleanlog', latestCleanLogImage);
+					}
 				}
-				this.vacbot.downloadSecuredContent(object[1].imageUrl, '/userdata/previousCleanLog_(' + data.id + ').png');
-				if (init) { 
-					const previousCleanLogImage = await this.homey.images.createImage();
-					previousCleanLogImage.setPath('/userdata/previousCleanLog_(' + data.id + ').png');
-					this.setCameraImage('Previous Cleanlog', 'Previous Cleanlog', previousCleanLogImage);
+				catch (error) {
+					this.log('error' + error)
+					this.log('object: ' + JSON.stringify(object))
+				}
+				try {
+					this.vacbot.downloadSecuredContent(object[1].imageUrl, '/userdata/previousCleanLog_(' + data.id + ').png').catch(this.error);;
+					if (init) {
+						const previousCleanLogImage = await this.homey.images.createImage();
+						previousCleanLogImage.setPath('/userdata/previousCleanLog_(' + data.id + ').png');
+						this.setCameraImage('Previous Cleanlog', 'Previous Cleanlog', previousCleanLogImage);
+					}
+				}
+				catch (error) {
+					this.log('error' + error)
+					this.log('object: ' + JSON.stringify(object))
 				}
 				var stopReason = -1;
 				switch ((object[0].stopReason - 1).toString()) {
@@ -318,7 +330,7 @@ class VacuumDevice extends Device {
 
 			this.vacbot.on('ChargeState', (status) => {
 				let oldStatus = this.getCapabilityValue('Charge');
-				this.setCapabilityValue('Charge', status);
+				this.setCapabilityValue('Charge', status).catch(this.error);
 
 				if (oldStatus && (oldStatus != status)) {
 					try {
@@ -394,10 +406,10 @@ class VacuumDevice extends Device {
 						CurrentZone = area.name;
 					}
 				});
-				this.setCapabilityValue('CurrentZone', CurrentZone);
+				this.setCapabilityValue('CurrentZone', CurrentZone).catch(this.error);
 				if (OldZone && (OldZone != CurrentZone)) {
 					try {
-						this.setCapabilityValue('PauseCleaning', false);
+						this.setCapabilityValue('PauseCleaning', false).catch(this.error);
 						changeZoneTrigger.trigger(this, { zone: CurrentZone });
 					}
 					catch (error) {
@@ -493,7 +505,7 @@ class VacuumDevice extends Device {
 			} else {
 				setTimeout(() => {
 					this.log('Operation not idle, no need to pause');
-					this.setCapabilityValue('PauseCleaning', false);
+					this.setCapabilityValue('PauseCleaning', false).catch(this.error);
 				}, 1000);
 			}
 		} else {
@@ -508,7 +520,7 @@ class VacuumDevice extends Device {
 			} else {
 				setTimeout(() => {
 					this.log('Deebot already docked, no need to return');
-					this.setCapabilityValue('ReturnDock', false);
+					this.setCapabilityValue('ReturnDock', false).catch(this.error);
 				}, 1000);
 			}
 		}

@@ -1,0 +1,2 @@
+Deze app is ontwikkeld voor mijn Deebop T9+, maar kan ook met andere Ecovacs Deebot modellen met dweilmodule (de 950type apparaten) gebruikt worden. 
+De apap maakt gebruik van de ecovacs-deebot.js bibliotheek ontwikkeld doormrbungle64, is een afgeleide van de Ecovas for Homey app van Olivier Messiant, en uitgebreid met extra functionaliteit voor o.a. de dweilmodule

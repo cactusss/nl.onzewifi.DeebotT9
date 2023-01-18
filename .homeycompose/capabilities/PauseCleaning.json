@@ -3,7 +3,9 @@
     "getable": true,
     "setable": true,
     "title": {
-        "en": "Pause Cleaning"
+        "en": "Pause Cleaning",
+        "fr": "Nettoyage en pause",
+        "nl": "Pauzeer"
     },
     "icon": "/assets/Pause.svg"
 }

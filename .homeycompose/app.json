@@ -1,6 +1,6 @@
 {
   "id": "nl.onzewifi.deebott9",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "compatibility": ">=8.1.1",
   "sdk": 3,
   "name": {
@@ -8,13 +8,20 @@
   },
   "brandColor": "#4520DF",
   "description": {
-    "en": "Connect and control your Ecovacs Deebot"
+    "en": "Connect and control your Ecovacs Deebot",
+    "nl": "Verbind je Ecovacs Deebot 950type (met dweil functie)",
+    "fr": "Connectez votre Ecovacs Deebot type 950 (avec serpillière)"
   },
   "contributors": {
     "developers": [
       {
         "name": "Sascha (mrbungle64)"
       },
+      {
+        "name": "Olivier Messiant"
+      }
+    ],
+    "translators": [
       {
         "name": "Olivier Messiant"
       }
@@ -68,7 +75,15 @@
       "mopping",
       "clean report",
       "ecovacs multimap"
+    ],
+    "nl": [
+      "Deebot",
+      "dweilen",
+      "multimap",
+      "ecovacs",
+      "afbeelding"
     ]
   },
-  "source": "https://github.com/cactusss/nl.onzewifi.DeebotT9"
+  "source": "https://github.com/cactusss/nl.onzewifi.DeebotT9",
+  "homeyCommunityTopicId": 75237
 }

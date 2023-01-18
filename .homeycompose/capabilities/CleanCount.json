@@ -3,7 +3,9 @@
     "getable": true,
     "setable": true,
     "title": {
-        "en": "Double run"
+        "en": "Double run",
+        "fr": "Double passage",
+        "nl": "2 maal schoonmaken"
     },
     "icon": "/assets/CleanCount.svg"
 }

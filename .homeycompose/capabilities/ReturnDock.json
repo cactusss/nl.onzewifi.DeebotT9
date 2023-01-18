@@ -3,7 +3,9 @@
     "getable": true,
     "setable": true,
     "title": {
-        "en": "Return to dock"
+        "en": "Return to dock",
+        "fr": "Retour à la base",
+        "nl": "Terugkeren naar dock"
     },
     "icon": "/assets/ReturnDock.svg"
 }
