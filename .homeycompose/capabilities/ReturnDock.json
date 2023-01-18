@@ -3,7 +3,7 @@
     "getable": true,
     "setable": true,
     "title": {
-        "en": "Return to dock"
+        "en": "Return to dock", "fr": "retour à la base"
     },
     "icon": "/assets/ReturnDock.svg"
 }

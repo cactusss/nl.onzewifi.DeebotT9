@@ -9,7 +9,9 @@
   },
   "brandColor": "#4520DF",
   "description": {
-    "en": "Connect and control your Ecovacs Deebot"
+    "en": "Connect your Ecovacs Deebot 950type (with mopping system)",
+    "nl": "Verbind je Ecovacs Deebot 950type (met dweil functie)",
+    "fr": "Connectez votre Ecovacs Deebot type 950 (avec serpillière)"
   },
   "contributors": {
     "developers": [
@@ -61,7 +63,8 @@
       {
         "id": "ChargeState",
         "title": {
-          "en": "Current chargestate changed"
+          "en": "Current chargestate changed",
+          "fr": "L'état de charge a changé"
         },
         "platforms": [
           "local"
@@ -71,7 +74,8 @@
             "name": "state",
             "type": "string",
             "title": {
-              "en": "Current charging state"
+              "en": "Current charging state",
+              "fr": "Etat de charge"
             }
           }
         ],
@@ -86,7 +90,8 @@
       {
         "id": "Operation",
         "title": {
-          "en": "Current operation changed"
+          "en": "Current operation changed",
+          "fr": "L'activité en cours a changé"
         },
         "platforms": [
           "local"
@@ -96,7 +101,8 @@
             "name": "operation",
             "type": "string",
             "title": {
-              "en": "Current Operation"
+              "en": "Current Operation",
+              "fr": "Activité en cours"
             }
           }
         ],
@@ -111,7 +117,8 @@
       {
         "id": "LocationReport",
         "title": {
-          "en": "Current location changed"
+          "en": "Current location changed",
+          "fr": "Changement de pièce"
         },
         "platforms": [
           "local"
@@ -121,7 +128,8 @@
             "name": "zone",
             "type": "string",
             "title": {
-              "en": "Current Zone"
+              "en": "Current Zone",
+              "fr": "Pièce actuelle"
             }
           }
         ],
@@ -136,7 +144,8 @@
       {
         "id": "CleanReport",
         "title": {
-          "en": "New CleanReport"
+          "en": "New CleanReport",
+          "fr": "Nouveau rapport de nettoyage"
         },
         "platforms": [
           "local"
@@ -146,35 +155,40 @@
             "name": "image",
             "type": "image",
             "title": {
-              "en": "Latest CleanLog image"
+              "en": "Latest CleanLog image",
+              "fr": "Image du dernier rapport de nettoyage"
             }
           },
           {
             "name": "date",
             "type": "string",
             "title": {
-              "en": "Time of completion"
+              "en": "Time of completion",
+              "fr": "Heure de fin"
             }
           },
           {
             "name": "stopReason",
             "type": "string",
             "title": {
-              "en": "Reason for stopping"
+              "en": "Reason for stopping",
+              "fr": "Raison de fin de nettoyage"
             }
           },
           {
             "name": "type",
             "type": "string",
             "title": {
-              "en": "Type of cleaning"
+              "en": "Type of cleaning",
+              "fr": "type de nettoyage"
             }
           },
           {
             "name": "mopped",
             "type": "boolean",
             "title": {
-              "en": "Mop installed"
+              "en": "Mop installed",
+              "fr": "Serpillière installée"
             }
           }
         ],
@@ -191,10 +205,12 @@
       {
         "id": "MoppingModule",
         "title": {
-          "en": "Mopping module !{{is|isn't}} attached"
+          "en": "Mopping module !{{is|isn't}} attached",
+          "fr": "Module serpillière !{{|non}} installé"
         },
         "hint": {
-          "en": "Check if the mopping modules is attached"
+          "en": "Check if the mopping modules is attached",
+          "fr": "Vérifiez si le module serpillière est installé"
         },
         "args": [
           {
@@ -207,10 +223,11 @@
       {
         "id": "AutoEmptyState",
         "title": {
-          "en": "Auto empty is !{{enabled|disabled}}"
+          "en": "Auto empty is !{{enabled|disabled}}",
+          "fr": "Vidage automatique !{{activé|désactivé}}"
         },
         "hint": {
-          "en": "Check if the auto emptying of the dustbin is or isn't enable"
+          "en": "Verifiez si le vidage automatique de la poussière est activé"
         },
         "args": [
           {
@@ -223,13 +240,16 @@
       {
         "id": "CurrentMap",
         "title": {
-          "en": "Current map !{{is|isn't}} "
+          "en": "Current map !{{is|isn't}} ",
+          "fr": "La carte actuelle !{{est|n'est pas}} "
         },
         "titleFormatted": {
-          "en": "Check if [[mapname]] !{{is|isn't}} the current map"
+          "en": "Check if [[mapname]] !{{is|isn't}} the current map",
+          "fr": "Vérifiez si [[mapname]] !{{est|n'est pas}} l'actuelle"
         },
         "hint": {
-          "en": "Check if a certain map is the current map"
+          "en": "Check if a certain map is the current map",
+          "fr": "Vérifie si une carte est en cours d'utilisation"
         },
         "platforms": [
           "local"
@@ -245,10 +265,12 @@
             "name": "mapname",
             "required": true,
             "title": {
-              "en": "Current map"
+              "en": "Current map",
+              "fr": "Carte actuelle"
             },
             "placeholder": {
-              "en": "Downstairs"
+              "en": "Downstairs",
+              "fr": "rez-de-chaussée"
             }
           }
         ]
@@ -258,10 +280,12 @@
       {
         "id": "AutoClean",
         "title": {
-          "en": "Start AutoCleaning"
+          "en": "Start AutoCleaning",
+          "fr": "Départ nettoyage automatique"
         },
         "titleFormatted": {
-          "en": "Start cleaning all rooms"
+          "en": "Start cleaning all rooms",
+          "fr": "démarre le nettoyage de toutes les pièces"
         },
         "platforms": [
           "local"
@@ -277,10 +301,12 @@
       {
         "id": "SpotArea",
         "title": {
-          "en": "Clean zone ..."
+          "en": "Clean zone ...",
+          "fr": "nettoyage de la pièce ..."
         },
         "titleFormatted": {
-          "en": "Clean zone [[zone]]"
+          "en": "Clean zone [[zone]]",
+          "fr": "Nettoie la pièce [[zone]]"
         },
         "platforms": [
           "local"
@@ -296,10 +322,12 @@
             "name": "zone",
             "required": true,
             "title": {
-              "en": "Zone"
+              "en": "Zone",
+              "fr": "pièce"
             },
             "placeholder": {
-              "en": "kitchen"
+              "en": "kitchen",
+              "fr": "cuisine"
             }
           }
         ]
@@ -307,10 +335,12 @@
       {
         "id": "SpotAreas",
         "title": {
-          "en": "Clean zones ..."
+          "en": "Clean zones ...",
+          "fr": "nettoie les pièces ..."
         },
         "titleFormatted": {
-          "en": "Clean [[zones]]"
+          "en": "Clean [[zones]]",
+          "fr": "Nettoie [[zones]]"
         },
         "platforms": [
           "local"
@@ -326,10 +356,12 @@
             "name": "zones",
             "required": true,
             "title": {
-              "en": "Zones"
+              "en": "Zones",
+              "fr": "pièces"
             },
             "placeholder": {
-              "en": "kitchen"
+              "en": "kitchen",
+              "fr": "pièces"
             }
           }
         ]
@@ -337,10 +369,12 @@
       {
         "id": "PauseCleaning",
         "title": {
-          "en": "Pause Cleaning"
+          "en": "pause Cleaning",
+          "fr": "suspend le nettoyage"
         },
         "titleFormatted": {
-          "en": "Temporary pause cleaning"
+          "en": "Temporary pause cleaning",
+          "fr": "suspend temporairement le nettoyage"
         },
         "platforms": [
           "local"
@@ -356,10 +390,12 @@
       {
         "id": "ResumeCleaning",
         "title": {
-          "en": "Resume Cleaning"
+          "en": "Resume Cleaning",
+          "fr": "Reprend le nettoyage"
         },
         "titleFormatted": {
-          "en": "Resume cleaning when pauzed"
+          "en": "Resume cleaning when paused",
+          "fr": "Reprend le nettoyage après mise en pause"
         },
         "platforms": [
           "local"
@@ -375,10 +411,12 @@
       {
         "id": "ReturnDock",
         "title": {
-          "en": "Return to dock"
+          "en": "Return to dock",
+          "fr": "Retour à la station"
         },
         "titleFormatted": {
-          "en": "Return to charging/autoempty dock"
+          "en": "Return to charging/autoempty dock",
+          "fr": "Retour à la station de charge"
         },
         "args": [
           {
@@ -391,10 +429,12 @@
       {
         "id": "EmptyDustBin",
         "title": {
-          "en": "Empty the dustbin"
+          "en": "Empty the dustbin",
+          "fr": "vide la poussière"
         },
         "titleFormatted": {
-          "en": "Empty the dustbin"
+          "en": "Empty the dustbin",
+          "fr": "vide la poussière"
         },
         "platforms": [
           "local"
@@ -548,7 +588,8 @@
       "getable": true,
       "uiComponent": "sensor",
       "title": {
-        "en": "Freshen air while cleaning"
+        "en": "Freshen air while cleaning",
+        "fr": "Désodorise pendant le nettoyage"
       },
       "icon": "/assets/AromaMode.svg"
     },
@@ -557,7 +598,8 @@
       "getable": true,
       "setable": true,
       "title": {
-        "en": "Start Auto Clean"
+        "en": "Start Auto Clean",
+        "fr": "Nettoyage automatique"
       },
       "icon": "/assets/AutoClean.svg"
     },
@@ -566,7 +608,8 @@
       "getable": true,
       "setable": true,
       "title": {
-        "en": "Auto empty after cleaning"
+        "en": "Auto empty after cleaning",
+        "fr": "Vidange auto après nettoyage"
       },
       "icon": "/assets/AutoEmpty.svg"
     },
@@ -586,7 +629,8 @@
       "getable": true,
       "setable": true,
       "title": {
-        "en": "Double run"
+        "en": "Double run",
+        "fr": "Double passage"
       },
       "icon": "/assets/CleanCount.svg"
     },
@@ -629,7 +673,8 @@
       "getable": true,
       "setable": true,
       "title": {
-        "en": "Pause Cleaning"
+        "en": "Pause Cleaning",
+        "fr": "Nettoyage en pause"
       },
       "icon": "/assets/Pause.svg"
     },
@@ -638,7 +683,8 @@
       "getable": true,
       "setable": true,
       "title": {
-        "en": "Return to dock"
+        "en": "Return to dock",
+        "fr": "retour à la base"
       },
       "icon": "/assets/ReturnDock.svg"
     },
@@ -647,7 +693,8 @@
       "getable": true,
       "setable": true,
       "title": {
-        "en": "Deep Mopping mode"
+        "en": "Deep Mopping mode",
+        "fr": "Serpillère renforcée"
       },
       "icon": "/assets/mop-svgrepo-com.svg"
     },
@@ -656,39 +703,45 @@
       "uiComponent": "picker",
       "title": {
         "en": "Suction power",
-        "nl": "Zuigkracht"
+        "nl": "Zuigkracht",
+        "fr": "Puissance d'aspiration"
       },
       "desc": {
         "en": "Vacuum Power",
-        "nl": "Zuigkracht van de Deebot"
+        "nl": "Zuigkracht van de Deebot",
+        "fr": "Puissance du robot"
       },
       "values": [
         {
           "id": "1",
           "title": {
             "en": "Quiet",
-            "nl": "Zacht"
+            "nl": "Zacht",
+            "fr": "Léger"
           }
         },
         {
           "id": "2",
           "title": {
             "en": "Standard",
-            "nl": "Standaard"
+            "nl": "Standaard",
+            "fr": "Standard"
           }
         },
         {
           "id": "3",
           "title": {
             "en": "Max",
-            "nl": "Max"
+            "nl": "Max",
+            "fr": "Max"
           }
         },
         {
           "id": "4",
           "title": {
             "en": "Max+",
-            "nl": "Max+"
+            "nl": "Max+",
+            "fr": "Max+"
           }
         }
       ],
@@ -738,7 +791,7 @@
           "id": "4",
           "title": {
             "en": "Ultra High",
-            "fr": "Tres Beaucoup",
+            "fr": "Très élevé",
             "nl": "Extra Hoog"
           }
         }

@@ -3,7 +3,8 @@
     "getable": true,
     "uiComponent": "sensor",
     "title": {
-        "en": "Freshen air while cleaning"
+        "en": "Freshen air while cleaning",
+        "fr": "Désodorise pendant le nettoyage"
     },
     "icon": "/assets/AromaMode.svg"
 }

@@ -3,7 +3,8 @@
     "getable": true,
     "setable": true,
     "title": {
-        "en": "Start Auto Clean"
+        "en": "Start Auto Clean",
+        "fr": "Nettoyage automatique"
     },
     "icon": "/assets/AutoClean.svg"
 }

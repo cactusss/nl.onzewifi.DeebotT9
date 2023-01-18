@@ -8,7 +8,9 @@
   },
   "brandColor": "#4520DF",
   "description": {
-    "en": "Connect and control your Ecovacs Deebot"
+    "en": "Connect your Ecovacs Deebot 950type (with mopping system)",
+    "nl": "Verbind je Ecovacs Deebot 950type (met dweil functie)",
+    "fr": "Connectez votre Ecovacs Deebot type 950 (avec serpillière)"
   },
   "contributors": {
     "developers": [

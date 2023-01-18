@@ -3,7 +3,7 @@
     "getable": true,
     "setable": true,
     "title": {
-        "en": "Deep Mopping mode"
+        "en": "Deep Mopping mode", "fr": "Serpillère renforcée"
     },
     "icon": "/assets/mop-svgrepo-com.svg"
 }

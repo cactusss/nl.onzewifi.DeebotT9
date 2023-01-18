@@ -3,35 +3,41 @@
     "uiComponent": "picker",
     "title": {
         "en": "Suction power",
-        "nl": "Zuigkracht"
+        "nl": "Zuigkracht",
+        "fr": "Puissance d'aspiration"
     },
     "desc": {
         "en": "Vacuum Power",
-        "nl": "Zuigkracht van de Deebot"
+        "nl": "Zuigkracht van de Deebot",
+        "fr": "Puissance du robot"
     },
     "values": [{
             "id": "1",
             "title": {
                 "en": "Quiet",
-                "nl": "Zacht"
+                "nl": "Zacht",
+                "fr": "Léger"
             }
         }, {
             "id": "2",
             "title": {
                 "en": "Standard",
-                "nl": "Standaard"
+                "nl": "Standaard",
+                "fr": "Standard"
             }
         }, {
             "id": "3",
             "title": {
                 "en": "Max",
-                "nl": "Max"
+                "nl": "Max",
+                "fr": "Max"
             }
         }, {
             "id": "4",
             "title": {
                 "en": "Max+",
-                "nl": "Max+"
+                "nl": "Max+",
+                "fr": "Max+"
             }
         }
     ],
