@@ -10,5 +10,8 @@
   },
   "1.2.4": {
     "en": "Fixed another bug"
+  },
+  "1.2.5": {
+    "en": "Beter error handling, and added translations"
   }
 }
