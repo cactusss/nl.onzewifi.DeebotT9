@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='settings.css'>
+        <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+        <script type="text/javascript" src="settings.js" data-origin="settings"></script>
+    </head>
+    <body>
+        <div class="div-body">
+            <div id="log">
+                <div class="div-log overflow" id="div-log">
+                    <div class="addScrollStyle nowrap" id="loglines">
+                        No logging to show yet
+                    </div>
+                </div>
+                <div class="div-buttons" id="div-buttons">
+                    <button class="button" id="btn_update" onclick="refreshLogs()">Refresh</button>
+                    <button class="button" id="btn_delete" onclick="deleteLogs()">Clear log</button>
+                    <button class="button" id="btn_settings" onclick="openSettings();">Log settings</button>
+                </div>
+            </div>
+            <div id="settings" class="hidden modal">
+                <fieldset>
+                    <legend>Deebot log settings</legend>
+                    <div>
+                        <input type="checkbox" id="appdebug" name="appdebug" onclick="checkboxAppDebug(this)">
+                        <label for="appdebug">Enable App Debug logging</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="libdebug" name="libdebug" onclick="checkboxLibDebug(this)">
+                        <label for="libdebug">Enable Library Debug logging</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="verbose" name="verbose" onclick="checkboxVerbose(this)">
+                        <label for="verbose">Enable verbose info</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="wrap" name="wrap" onclick="checkboxWrap(this)">
+                        <label for="wrap">Wrap log lines</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="autorefresh" name="autorefresh" onclick="checkboxAutoRefresh(this)">
+                        <label for="autorefresh">Auto refresh logs</label>
+                    </div>
+                    </br>
+                    <div class="right">
+                        <button class="button" id="savesettings">Close</button>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </body>
+</html>

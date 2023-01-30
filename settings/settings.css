@@ -1,0 +1,111 @@
+body {
+    overflow: hidden;
+    /* Hide scrollbars */
+}
+
+.div-body {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+.div-log {
+    position: fixed;
+    height: calc(100vh - 35px);
+    width: 99vw;
+    left: 0;
+    top: 0h;
+}
+
+.div-buttons {
+    display: flex;
+    position: fixed;
+    height: 35px !important;
+    width: 100vw;
+    left: 0;
+    top: calc(100vh - 35px);
+    ;
+    justify-content: center;
+    align-items: center;
+}
+
+#settings {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    z-index: 2;
+    background-color: #EBEBEB;
+}
+
+.button {
+    display: inline-block;
+}
+
+.overflow {
+    overflow: auto;
+}
+
+#div-log::-webkit-scrollbar {
+    width: 1vw;
+    height: 1vw;
+    background-color: #EBEBEB;
+}
+
+#div-log::-webkit-scrollbar-thumb {
+    border-radius: 1vw;
+    background-color: #4520DF;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+
+.addScrollStyle {
+    height: calc(100vh - 35px);
+}
+
+.scrollbar {
+    margin-left: 30px;
+    float: left;
+    margin-bottom: 25px;
+    height: 1vh;
+    background: #EBEBEB;
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 1vw;
+}
+
+.nowrap {
+    white-space: nowrap !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.blur-filter {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.right {
+    text-align: right
+}
+
+#div-log {
+    overflow-x: auto;
+}
+
+#log-line {
+    overflow-wrap: break-word;
+}
+
+.modal {
+    border-radius: 25px;
+    border: 2px solid #4520DF;
+    padding: 2vw;
+}

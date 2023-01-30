@@ -1,10 +1,4 @@
-// based on https://github.com/mrbungle64/ecovacs-deebot.js 
-
-// notes : peut avoir besoin de tenter la connection 2 ou 3 fois, du au random number. même des fois plus, insister
-// est en primcipe compatible devices multiples
-
 'use strict';
-
 
 const { Driver } = require('homey');
 const ecovacsDeebot = require('ecovacs-deebot');
@@ -22,6 +16,7 @@ class VacuumDriver extends Driver {
 		*/
 	async onInit() {
 		this.log('Driver Vacuum has been initialized');
+		this.log('appdebug: ' + appdebug)
 	}
 
 	onMapDeviceClass(device) {
@@ -52,7 +47,7 @@ class VacuumDriver extends Driver {
 					this.log("Connected!");
 					credentialsAreValid = true;
 				}).catch((e) => {
-					this.log("Failure in connecting!");
+					this.err("Failure in connecting!");
 				});
 
 			});
@@ -102,7 +97,7 @@ class VacuumDriver extends Driver {
 	async onRepair(session, device) {
 		// Argument session is a PairSocket, similar to Driver.onPair
 		// Argument device is a Homey.Device that's being repaired
-		this.log('Repairing');
+		this.log('Repairing'); 
 		let data = device.getData();
 
 		let username = data.username;
@@ -120,7 +115,7 @@ class VacuumDriver extends Driver {
 			await global.DeviceAPI.connect(username, password_hash).then(() => {
 				this.log("Connected!");
 			}).catch((e) => {
-				this.log("Failure in connecting!: ", e);
+				this.err("Failure in connecting!: ", e);
 			});
 
 		});

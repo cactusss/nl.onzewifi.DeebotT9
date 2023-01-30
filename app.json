@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "nl.onzewifi.deebott9",
-  "version": "1.2.5",
+  "version": "1.2.7",
   "compatibility": ">=8.1.1",
   "sdk": 3,
   "name": {
@@ -53,6 +53,16 @@
   },
   "bugs": {
     "url": "https://github.com/cactusss/nl.onzewifi.DeebotT9/issues"
+  },
+  "api": {
+    "getLogs": {
+      "method": "get",
+      "path": "/getlogs"
+    },
+    "deleteLogs": {
+      "method": "get",
+      "path": "/deletelogs"
+    }
   },
   "tags": {
     "en": [

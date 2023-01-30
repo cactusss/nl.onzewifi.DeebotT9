@@ -12,6 +12,16 @@ class VacuumDevice extends Device {
 
 		this.log('Device ' + this.getName() + ' has been initialized');
 
+		let appdebug	= this.homey.settings.get('appdebug')		|| true;
+		let libdebug	= this.homey.settings.get('libdebug')		|| false;
+		let verbose		= this.homey.settings.get('verbose')		|| false ;
+		let wrap		= this.homey.settings.get('wrap')			|| false ;
+		let autorefresh	= this.homey.settings.get('autorefresh')	|| true ;
+		
+		this.homey.settings.on('set', (function (dynamicVariableName) {
+			eval(dynamicVariableName + " = this.homey.settings.get(dynamicVariableName)");
+		}).bind(this));
+
 		let api = global.DeviceAPI;
 		if (api == null) {
 			this.log('System reboot, reconnecting');
@@ -35,43 +45,44 @@ class VacuumDevice extends Device {
 
 		const actionAutoClean = this.homey.flow.getActionCard('AutoClean');
 		actionAutoClean.registerRunListener(async (args, state) => {
+			if (this.appdebug) { this.log('Cmd: vacbot.clean()'); }
 			this.vacbot.clean();
 		});
 
 		const actionRetunrDock = this.homey.flow.getActionCard('ReturnDock');
 		actionRetunrDock.registerRunListener(async (args, state) => {
 			this.setCapabilityValue('ReturnDock', true).catch(this.error);
+			if (this.appdebug) { this.log('Cmd: vacbot.charge()'); }
 			this.vacbot.charge();
 		});
 
 		const actionEmptyDustBin = this.homey.flow.getActionCard('EmptyDustBin');
 		actionEmptyDustBin.registerRunListener(async (args, state) => {
+			if (this.appdebug) { this.log('Cmd: vacbot.run(EmptyDustBin)'); }
 			this.vacbot.run('EmptyDustBin');
 		});
 
 		const actionPauseCleaning = this.homey.flow.getActionCard('PauseCleaning');
 		actionPauseCleaning.registerRunListener(async (args, state) => {
 			this.setCapabilityValue('PauseCleaning', true).catch(this.error);
+			if (this.appdebug) { this.log('Cmd: vacbot.pause()'); }
 			this.vacbot.pause();
 		});
 
 		const actionResumeCleaning = this.homey.flow.getActionCard('ResumeCleaning');
 		actionResumeCleaning.registerRunListener(async (args, state) => {
 			this.setCapabilityValue('PauseCleaning', false).catch(this.error);
+			if (this.appdebug) { this.log('Cmd: vacbot.resume()'); }
 			this.vacbot.resume();
 		});
 
 		const actionSpotArea = this.homey.flow.getActionCard('SpotArea');
+		actionSpotArea.registerArgumentAutocompleteListener('zone', this.flowAutocompleteactionSpotArea.bind(this));
 		actionSpotArea.registerRunListener(async (args, state) => {
 			if (args.zone) {
-				this.log('Clean zone: ' + args.zone.id);
+				if (this.appdebug) { this.log('Cmd: vacbot.spotArea(' + args.zone.id + ')'); }
 				this.vacbot.spotArea(args.zone.id);
 			}
-		});
-
-		const actionRawCommand = this.homey.flow.getActionCard('RawCommand');
-		actionRawCommand.registerRunListener(async (args, state) => {
-			this.vacbot.run(args.command);
 		});
 
 		const actionSpotAreas = this.homey.flow.getActionCard('SpotAreas');
@@ -105,7 +116,14 @@ class VacuumDevice extends Device {
 				let CleaningZones = Zones.map(Zone => Zone.Zone).join(',');
 				this.log('Clean zones: ' + CleaningZones);
 				this.vacbot.spotArea(CleaningZones);
+				if (this.appdebug) { this.log('Cmd: vacbot.spotArea(' + CleaningZones + ')'); }
 			}
+		});
+
+		const actionRawCommand = this.homey.flow.getActionCard('RawCommand');
+		actionRawCommand.registerRunListener(async (args, state) => {
+			if (this.appdebug) { this.log('Cmd: vacbot.run(' + args.command + ')'); }
+			this.vacbot.run(args.command);
 		});
 
 		const conditionMoppingModule = this.homey.flow.getConditionCard('MoppingModule');
@@ -189,54 +207,60 @@ class VacuumDevice extends Device {
 			const CleanLogTriggerImage = await this.homey.images.createImage();
 			CleanLogTriggerImage.setPath('/userdata/latestCleanLog_(' + data.id + ').png');
 
-			this.vacbot.run('GetMaps');
-			this.vacbot.run('GetWaterBoxInfo');
-			this.vacbot.run('GetCleanCount');
-			this.vacbot.run('GetCleanSpeed');
-			this.vacbot.run('GetWaterLevel');
-			this.vacbot.run('GetAutoEmpty');
-			this.vacbot.run('GetBatteryState');
-			this.vacbot.run('GetCleanState');
-			this.vacbot.run('GetCleanLogs');
+			if (this.appdebug) { this.log('vacbot.run(GetMaps)'); } this.vacbot.run('GetMaps');
+			if (this.appdebug) { this.log('vacbot.run(GetWaterBoxInfo)'); } this.vacbot.run('GetWaterBoxInfo');
+			if (this.appdebug) { this.log('vacbot.run(GetCleanCount)'); } this.vacbot.run('GetCleanCount');
+			if (this.appdebug) { this.log('vacbot.run(GetCleanSpeed)'); } this.vacbot.run('GetCleanSpeed');
+			if (this.appdebug) { this.log('vacbot.run(GetWaterLevel)'); } this.vacbot.run('GetWaterLevel');
+			if (this.appdebug) { this.log('vacbot.run(GetAutoEmpty)'); } this.vacbot.run('GetAutoEmpty');
+			if (this.appdebug) { this.log('vacbot.run(GetBatteryState)'); } this.vacbot.run('GetBatteryState');
+			if (this.appdebug) { this.log('vacbot.run(GetCleanState)'); } this.vacbot.run('GetCleanState');
+			if (this.appdebug) { this.log('vacbot.run(GetCleanLogs)'); } this.vacbot.run('GetCleanLogs');
+
 			// this.vacbot.run('GetAromaMode'); Not working (yet?)
 
 			this.vacbot.on('WaterBoxInfo', (level) => {
 				this.setCapabilityValue('MopStatus', Boolean(level)).catch(this.error);
-			});
-
-			this.vacbot.on('WaterBoxInfo', (level) => {
-				this.setCapabilityValue('MopStatus', Boolean(level)).catch(this.error);
+				if (this.appdebug) { this.log('setCapabilityValue(MopStatus, ' + Boolean(level) + ')'); }
 			});
 
 			this.vacbot.on('CleanCount', (mode) => {
 				this.setCapabilityValue('CleanCount', Boolean((mode - 1))).catch(this.error);
+				if (this.appdebug) { this.log('setCapabilityValue(CleanCount, ' + Boolean((mode - 1)) + ')'); }
 			});
 
 			this.vacbot.on('CleanSpeed', (level) => {
 				this.setCapabilityValue('VacuumPower', level.toString()).catch(this.error);
+				if (this.appdebug) { this.log('setCapabilityValue(VacuumPower, ' + level.toString() + ')'); }
 			});
 
 			this.vacbot.on('WaterLevel', (level) => {
 				this.setCapabilityValue('WaterFlowLevel', level.toString()).catch(this.error);
+				if (this.appdebug) { this.log('setCapabilityValue(WaterFlowLevel, ' + level.toString() + ')'); }
 			});
 
 			this.vacbot.on('AutoEmpty', (mode) => {
 				this.setCapabilityValue('AutoEmpty', Boolean(mode)).catch(this.error);
+				if (this.appdebug) { this.log('setCapabilityValue(AutoEmpty, ' + Boolean(mode) + ')'); }
 			});
 
 			this.vacbot.on('AromaMode', (mode) => {
 				this.setCapabilityValue('AromaMode', Boolean(mode)).catch(this.error);
+				if (this.appdebug) { this.log('setCapabilityValue(AromaMode, ' + Boolean(mode) + ')'); }
 			});
 
 			this.vacbot.on("BatteryInfo", (battery) => {
 				this.setCapabilityValue('measure_battery', Math.round(battery)).catch(this.error);
+				if (this.appdebug) { this.log('setCapabilityValue(measure_battery, ' + Math.round(battery) + ')'); }
 			});
 
 			this.vacbot.on('WaterBoxScrubbingType', (mode) => {
 				this.setCapabilityValue('ScrubbingType', Boolean(mode - 1)).catch(this.error);
+				if (this.appdebug) { this.log('setCapabilityValue(ScrubbingType, ' + Boolean(mode - 1) + ')'); }
 			});
 
 			this.vacbot.on('CleanLog', async (object) => {
+				if (this.appdebug) { this.log('vacbot.on(CleanLog, ' + object + ')'); }
 				try {
 					this.vacbot.downloadSecuredContent(object[0].imageUrl, '/userdata/latestCleanLog_(' + data.id + ').png').catch(this.error);
 					if (init) {
@@ -246,8 +270,8 @@ class VacuumDevice extends Device {
 					}
 				}
 				catch (error) {
-					this.log('error' + error)
-					this.log('object: ' + JSON.stringify(object))
+					this.err('error: ' + error)
+					this.err('object: ' + JSON.stringify(object))
 				}
 				try {
 					this.vacbot.downloadSecuredContent(object[1].imageUrl, '/userdata/previousCleanLog_(' + data.id + ').png').catch(this.error);;
@@ -258,8 +282,8 @@ class VacuumDevice extends Device {
 					}
 				}
 				catch (error) {
-					this.log('error' + error)
-					this.log('object: ' + JSON.stringify(object))
+					this.err('error: ' + error)
+					this.err('object: ' + JSON.stringify(object))
 				}
 				var stopReason = -1;
 				switch ((object[0].stopReason - 1).toString()) {
@@ -296,6 +320,7 @@ class VacuumDevice extends Device {
 			});
 
 			this.vacbot.on('CleanReport', (status) => {
+				if (this.appdebug) { this.log('vacbot.on(CleanReport, ' + status + ')'); }
 				if (status !== this.getCapabilityValue('Operation')) {
 					this.log('Current Operation: ' + status);
 					switch (status) {
@@ -329,6 +354,7 @@ class VacuumDevice extends Device {
 			});
 
 			this.vacbot.on('ChargeState', (status) => {
+				if (this.appdebug) { this.log('vacbot.on(ChargeState, ' + status + ')'); }
 				let oldStatus = this.getCapabilityValue('Charge');
 				this.setCapabilityValue('Charge', status).catch(this.error);
 
@@ -337,12 +363,13 @@ class VacuumDevice extends Device {
 						changeChargeStateTrigger.trigger(this, { state: status });
 					}
 					catch (error) {
-						this.log('trigger error : ', error);
+						this.err('trigger error: ', error);
 					}
 				}
 			});
 
 			this.vacbot.on('Maps', async (maps) => {
+				if (this.appdebug) { this.log('vacbot.on(Maps, ' + maps + ')'); }
 				this.log('Updating Maps')
 				var mapnames = [];
 				for (const map of maps['maps']) {
@@ -368,6 +395,7 @@ class VacuumDevice extends Device {
 			});
 
 			this.vacbot.on('MapSpotAreas', async (spotAreas) => {
+				if (this.appdebug) { this.log('vacbot.on(MapSpotAreas, ' + spotAreas + ')'); }
 				for (const spotArea of spotAreas['mapSpotAreas']) {
 					const spotAreaID = spotArea['mapSpotAreaID'];
 					await this.vacbot.run('GetSpotAreaInfo', spotAreas['mapID'], spotAreaID);
@@ -375,6 +403,7 @@ class VacuumDevice extends Device {
 			});
 
 			this.vacbot.on('MapSpotAreaInfo', async (area) => {
+				if (this.appdebug) { this.log('vacbot.on(MapSpotAreaInfo, ' + area + ')'); }
 				var tableAreas = this.getStoreValue('areas');
 				const index = tableAreas.findIndex(element => element.id === area.mapSpotAreaID);
 				if (index !== -1) { tableAreas.splice(index, 1); }
@@ -413,7 +442,7 @@ class VacuumDevice extends Device {
 						changeZoneTrigger.trigger(this, { zone: CurrentZone });
 					}
 					catch (error) {
-						this.log('trigger error : ', error);
+						this.err('trigger error: ', error);
 					}
 				}
 			});
@@ -526,14 +555,13 @@ class VacuumDevice extends Device {
 		}
 	}
 
-	// async flowAutocompleteactionSpotArea(query, args) {
-	// 	var tableAreas = this.getStoreValue('areas');
-	// 	var filtered = tableAreas.filter((element) => {
-	// 		return element.name.toLowerCase().includes(query.toLowerCase());
-	// 	});
-	// 	return filtered;
-	// }
-
+	async flowAutocompleteactionSpotArea(query, args) {
+		var tableAreas = this.getStoreValue('areas');
+		var filtered = tableAreas.filter((element) => {
+			return element.name.toLowerCase().includes(query.toLowerCase());
+		});
+		return filtered;
+	}
 	// async flowactionSpotArea(args, state) {
 	// 	var mapID = this.getStoreValue('currentMap');
 	// 	// Only able to start spotcleaning if on the right map
