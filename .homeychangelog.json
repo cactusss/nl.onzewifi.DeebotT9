@@ -16,5 +16,8 @@
   },
   "1.2.7": {
     "en": "Even beter error handling, and added logging module (see app settings)"
+  },
+  "1.2.8": {
+    "en": "Solve proble with 'operation' trigger"
   }
 }
