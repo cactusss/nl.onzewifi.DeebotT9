@@ -22,5 +22,8 @@
   },
   "1.2.9": {
     "en": "Fixed an error in catching errors ;)"
+  },
+  "1.3.0": {
+    "en": "Fixed yet another error in catching errors ;)"
   }
 }
