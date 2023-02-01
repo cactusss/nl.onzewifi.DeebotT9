@@ -19,5 +19,8 @@
   },
   "1.2.8": {
     "en": "Solve proble with 'operation' trigger"
+  },
+  "1.2.9": {
+    "en": "Fixed an error in catching errors ;)"
   }
 }
