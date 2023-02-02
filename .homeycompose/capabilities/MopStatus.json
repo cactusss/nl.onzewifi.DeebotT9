@@ -7,5 +7,6 @@
   },
   "uiComponent": "sensor",
   "getable": true,
+  "insights": false,
   "icon": "/assets/mop-svgrepo-com.svg"
 }

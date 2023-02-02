@@ -7,5 +7,6 @@
         "fr": "Retour à la base",
         "nl": "Terugkeren naar dock"
     },
+    "insights": false,
     "icon": "/assets/ReturnDock.svg"
 }

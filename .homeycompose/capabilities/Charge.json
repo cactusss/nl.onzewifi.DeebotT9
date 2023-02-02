@@ -8,5 +8,6 @@
   "uiComponent": "sensor",
   "getable": true,
   "setable": true,
+  "insights": false,
   "icon": "/assets/battery-charge-svgrepo-com.svg"
 }

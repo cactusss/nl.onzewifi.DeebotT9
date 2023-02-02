@@ -7,5 +7,6 @@
         "fr": "Désodorise pendant le nettoyage",
         "nl": "Luchtverfrisser tijden het schoonmake"
     },
+    "insights": false,
     "icon": "/assets/AromaMode.svg"
 }

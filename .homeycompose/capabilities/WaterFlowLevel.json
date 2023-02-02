@@ -43,6 +43,6 @@
     ],
     "getable": true,
     "setable": true,
+    "insights": false,
     "icon": "/assets/mop-svgrepo-com.svg"
-
 }

@@ -7,5 +7,6 @@
         "fr": "Double passage",
         "nl": "2 maal schoonmaken"
     },
+    "insights": false,
     "icon": "/assets/CleanCount.svg"
 }

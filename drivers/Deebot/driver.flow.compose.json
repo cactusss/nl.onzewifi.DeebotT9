@@ -246,6 +246,37 @@
             ]
         },
         {
+            "id": "ErrorReport",
+            "title": {
+                "en": "An error occurred",
+                "fr": "Une erreur s'est produite",
+                "nl": "Er is een foutmelding ontvangen" 
+            },
+            "platforms": [
+                "local"
+            ],
+            "tokens": [
+                {
+                    "name": "error",
+                    "type": "string",
+                    "title": {
+                        "en": "Last error",
+                        "fr": "Dernière erreur",
+                        "nl": "Laatste foutmelding"
+                    }
+                },
+                {
+                    "name": "errorcode",
+                    "type": "number",
+                    "title": {
+                        "en": "Last error code",
+                        "fr": "Dernière code erreur",
+                        "nl": "Laatste foutcode"
+                    }
+                }
+            ]
+        },
+        {
             "id": "CleanReport",
             "title": {
                 "en": "New CleanReport",

@@ -41,13 +41,13 @@ function refreshLogs() {
 }
 
 function deleteLogs() {
-	Homey.confirm(Homey.__('settings.tab2.deleteWarning'), 'warning', (error, result) => {
+	Homey.confirm(Homey.__('settings.deleteWarning'), 'warning', (error, result) => {
 		if (result) {
 			Homey.api('GET', 'deletelogs/', null, (err) => {
 				if (err) {
 					Homey.alert(err.message, 'error'); // [, String icon], Function callback )
 				} else {
-					Homey.alert(Homey.__('settings.tab2.deleted'), 'info');
+					Homey.alert(Homey.__('settings.deleted'), 'info');
 					refreshLogs();
 				}
 			});

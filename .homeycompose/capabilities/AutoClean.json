@@ -7,5 +7,6 @@
         "fr": "Nettoyage automatique",
         "nl": "Automatisch schoonmaken"
     },
+    "insights": false,
     "icon": "/assets/AutoClean.svg"
 }

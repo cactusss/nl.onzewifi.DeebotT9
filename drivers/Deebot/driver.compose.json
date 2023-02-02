@@ -6,6 +6,7 @@
   "class": "vacuumcleaner",
   "capabilities": [
       "measure_battery",
+      "alarm_tamper",
       "Charge",
       "Operation",
       "CurrentZone",

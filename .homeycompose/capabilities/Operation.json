@@ -1,12 +1,13 @@
 {
   "type": "string",
   "title": {
-    "en": "Clean status",
+    "en": "Current operation",
     "fr": "Etat de nettoyage",
-    "nl": "Schonmaakstatus"
+    "nl": "Huidige actie"
   },
   "uiComponent": "sensor",
   "getable": true,
   "setable": true,
+  "insights": false,
   "icon": "/assets/clean-svgrepo-com.svg"
 }

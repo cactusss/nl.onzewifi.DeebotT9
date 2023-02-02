@@ -1,0 +1,47 @@
+{
+    "type": "boolean",
+    "title": {
+      "en": "Generic warning",
+      "nl": "Algemene waarschuwing",
+      "fr": "Alarme générique"
+    },
+    "icon": "/assets/alert.svg",
+    "desc": {
+      "en": "Generic warning",
+      "nl": "Algemene waarschuwing",
+      "fr": "Alarme générique"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "$flow": {
+      "triggers": [
+        {
+          "id": "alarm_tamper_true",
+          "title": {
+            "en": "The generic alarm turned on",
+            "nl": "Het algemene alarm gaat aan",
+            "fr": "L'alarme générique s'est activée"
+          }
+        },
+        {
+          "id": "alarm_tamper_false",
+          "title": {
+            "en": "The generic alarm turned off",
+            "nl": "Het algemene alarm ging uit",
+            "fr": "L'alarme générique s'est désactivée"
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "id": "alarm_tamper",
+          "title": {
+            "en": "The generic alarm is !{{on|off}}",
+            "nl": "Het algemene alarm is !{{aan|uit}}",
+            "fr": "L'alarme générique est !{{en marche|arrêtée}}"
+          }
+        }
+      ]
+    }
+  }

@@ -25,5 +25,11 @@
   },
   "1.3.0": {
     "en": "Fixed yet another error in catching errors ;)"
+  },
+  "1.3.1": {
+    "en": "Added trigger card for error state"
+  },
+  "1.3.2": {
+    "en": "Added error codes, and localiztion of settings and error messages"
   }
 }
