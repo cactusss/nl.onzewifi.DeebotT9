@@ -186,6 +186,7 @@ class VacuumDevice extends Device {
 			this.log('- Canvas module available: ' + api.getCanvasModuleIsAvailable());
 			this.log('- Using country: ' + api.getCountryName());
 			this.log('- Using continent code: ' + api.getContinent());
+			this.log('ApiVersion : ' + api.getVersion()); 
 			this.setAvailable();
 			this.log('Device is ready');
 
