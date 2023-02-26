@@ -19,14 +19,14 @@
         {
             "id": "SpotArea",
             "title": {
-                "en": "Clean zone ...",
+                "en": "Clean a zone ...",
                 "fr": "Nettoyage de la pièce ...",
-                "nl": "Maak een kamer schoon"
+                "nl": "Maak één kamer schoon"
             },
             "titleFormatted": {
-                "en": "Clean zone [[zone]]",
-                "fr": "Nettoie la pièce [[zone]]",
-                "nl": "Maak deze kamer schoon: [[zone]]"
+                "en": "Clean a single zone: [[zone]]",
+                "fr": "Nettoyer une seule zone: [[zone]]",
+                "nl": "Maak een enkele kamer schoon: [[zone]]"
             },
             "platforms": [
                 "local"

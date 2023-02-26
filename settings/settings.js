@@ -74,18 +74,21 @@ function closeSettings() {
 }
 
 function checkboxAppDebug(checkbox) {
+	console.log('checkboxAppDebug:' + checkbox.checked)
 	Homey.set("appdebug", checkbox.checked, function (err) {
 		if (err) return Homey.alert(err);
 	});
 };
 
 function checkboxLibDebug(checkbox) {
+	console.log('checkboxAppDebug:' + checkbox.checked)
 	Homey.set("libdebug", checkbox.checked, function (err) {
 		if (err) return Homey.alert(err);
 	});
 };
 
 function checkboxVerbose(checkbox) {
+	console.log('checkboxLibDebug:' + checkbox.checked)
 	Homey.set("verbose", checkbox.checked, function (err) {
 		if (err) return Homey.alert(err);
 	});
@@ -93,6 +96,7 @@ function checkboxVerbose(checkbox) {
 };
 
 function checkboxWrap(checkbox) {
+	console.log('checkboxWrap:' + checkbox.checked)
 	Homey.set("wrap", checkbox.checked, function (err) {
 		if (err) return Homey.alert(err);
 	});
@@ -100,14 +104,19 @@ function checkboxWrap(checkbox) {
 };
 
 function checkboxAutoRefresh(checkbox) {
+	console.log('checkboxAutoRefresh:' + checkbox.checked)
 	Homey.set("autorefresh", checkbox.checked, function (err) {
 		if (err) return Homey.alert(err);
 	});
 	if (checkbox.checked) {
-		clearInterval(refreshInterval || 0);
-		refreshInterval = setInterval(function () { refreshLogs() }, 5000);
+		if (window.refreshInterval) {
+			clearInterval(window.refreshInterval);
+		}
+		console.log('Starting autoRefresh...')
+		window.refreshInterval = setInterval(function () { refreshLogs() }, 5000);
 	} else {
-		clearInterval(refreshInterval || 0);
+		console.log('Stopping autoRefresh...')
+		clearInterval(window.refreshInterval);
 	}
 };
 
@@ -143,7 +152,7 @@ function onHomeyReady(Homey) {
 	Homey.get("autorefresh", function (err, autorefresh) {
 		if (err) return Homey.alert(err);
 		document.getElementById("autorefresh").checked = autorefresh;
-		if (autorefresh) { refreshInterval = setInterval(function () { refreshLogs() }, 5000) }
+		if (autorefresh) { var refreshInterval = setInterval(function () { refreshLogs() }, 5000) }
 	});
 
 	document.getElementById("savesettings").addEventListener("click", function (e) {

@@ -9,20 +9,12 @@ class Deebot extends Homey.App {
 	async onInit() {
 		if (!this.logger) this.logger = new Logger({ homey: this.homey, length: 500 });
 
-		global.appdebug		= this.homey.settings.get('appdebug')		|| true;
+		global.appdebug		= this.homey.settings.get('appdebug')		|| false;
 		global.libdebug		= this.homey.settings.get('libdebug')		|| false;
-		global.verbose		= this.homey.settings.get('verbose')		|| false ;
-		global.wrap			= this.homey.settings.get('wrap')			|| false ;
-		global.autorefresh	= this.homey.settings.get('autorefresh')	|| true ;
-		
-		if (libdebug) { 
-			process.env.NODE_ENV = 'development'
-			this.log('Library debugging enabled')
-		} else {
-			process.env.NODE_ENV = 'production'
-			this.log('Library debugging disabled')
-		}
-
+		global.verbose		= this.homey.settings.get('verbose')		|| false;
+		global.wrap			= this.homey.settings.get('wrap')			|| false;
+		global.autorefresh	= this.homey.settings.get('autorefresh')	|| false;
+				
 		process.on('unhandledRejection', (error) => {
 			this.error('unhandledRejection! ', error);
 		});
@@ -33,6 +25,12 @@ class Deebot extends Homey.App {
 
 		this.log(`${Homey.manifest.id} V${Homey.manifest.version} is running...`);
 		this.log(`Ecovacs Deebot is started`)
+
+		if (libdebug) { 
+			process.env.NODE_ENV = 'development'
+		} else {
+			process.env.NODE_ENV = 'production'
+		}
 
 		if (appdebug) { this.log('Settings:')}
 		if (appdebug) { this.log('- appdebug: ' + appdebug) }
